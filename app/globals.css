@@ -3,3 +3,43 @@
   themes: winter --default;
 }
 
+@theme {
+  /* Success & Error */
+  --color-success-100: #22c55e; /* green-500 */
+  --color-success-200: #16a34a; /* green-600 */
+  --color-destructive-100: #f87171; /* red-400 */
+  --color-destructive-200: #dc2626; /* red-600 */
+
+  /* Primary Accent: Soft blue */
+  --color-primary-100: #93c5fd; /* blue-300 */
+  --color-primary-200: #3b82f6; /* blue-500 */
+
+  /* Background and Surface */
+  --color-light-100: #f9fafb;   /* base light */
+  --color-light-400: #e5e7eb;   /* light gray */
+  --color-light-600: #9ca3af;   /* gray-400 */
+  --color-light-800: #4b5563;   /* gray-600 */
+
+  --color-dark-100: #0b0f19;   /* deep navy background */
+  --color-dark-200: #1a1f2b;   /* card surface */
+  --color-dark-300: #2e3440;   /* slightly lighter gray */
+
+  /* Fonts */
+  --font-mona-sans: "Inter", sans-serif;
+
+  /* Optional BG Pattern */
+  --bg-pattern: url("/pattern.png");
+}
+
+@layer components{
+
+  .input-shadow{
+    box-shadow: 0 4px 10px rgba(229, 231, 235, 0.15);
+  }
+
+  .absolute-center{
+    @apply absolute left-1/2 -translate-x-1/2 bottom-4
+  }
+}
+
+

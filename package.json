@@ -6,23 +6,45 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:server": "ts-node pages/api/server.ts"
   },
   "dependencies": {
+    "@ai-sdk/google": "^1.2.18",
+    "@supadata/js": "^1.2.0",
+    "ai": "^4.3.16",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "next": "15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "vercel-ai": "^0.0.0",
+    "xmldom": "^0.6.0",
+    "youtube-transcript": "^1.2.1",
+    "zod": "^3.24.4",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.19.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "daisyui": "^5.0.19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "keywords": [
+    "youtube",
+    "captions",
+    "transcript",
+    "api"
+  ],
+  "author": "Hosea",
+  "license": "MIT"
 }

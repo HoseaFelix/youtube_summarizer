@@ -1,7 +1,16 @@
+'use server'
+import Input from "./components/input";
+import AnimatedContent from "./components/animatedContent";
 
-export default function Home() {
+ 
+export default async function Home() {
+
   return (
-   <main className="p-5">
+
+   <main className="pt-20 px-10 max-w-5xl bg-white mx-auto h-screen  relative overflow-x-hidden">
+      
+      <AnimatedContent/>
+      <Input/>
     
    </main>
   );
