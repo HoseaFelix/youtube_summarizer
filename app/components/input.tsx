@@ -44,7 +44,7 @@ const Input = () => {
   };
 
   return (
-    <div className="flex flex-row h-20 bg-light-100 rounded-4xl shadow-light-800 shadow-sm mx-auto w-[80%] absolute-center">
+    <div className="flex flex-row h-20 bg-white/50 backdrop:saturate-150 rounded-4xl shadow-light-800 shadow-sm mx-auto w-[80%] absolute-center">
       <div className="h-full w-full p-5">
         <form
           onSubmit={handleSubmit}
