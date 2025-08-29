@@ -16,37 +16,44 @@ export const feedbackSchema = z.object({
   summary: z.string(),
 });
 
-export const generateCaptions = async (url)=>{
+export const generateCaptions = async (url) => {
+  try {
+    const res = await fetch("/api/get-captions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
 
-  const Transcript = await supadata.youtube.transcript({
-    url: url,
-  });
-  
-  if (!Transcript?.content || !Array.isArray(Transcript.content)) {
-    useErrorStore.getState().setError("No transcript content found.");
-    return;
+    const { transcript, error } = await res.json();
+
+    if (error || !transcript?.content) {
+      useErrorStore.getState().setError(error || "No transcript content found.");
+      return;
+    }
+
+    const flattenedCaptions = transcript.content.flat();
+    const captions = flattenedCaptions.map(item => item.text).join(" ");
+
+    const feedbackRes = await fetch("/api/create-feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ captions }),
+    });
+
+    const data = await feedbackRes.json();
+
+    if (data.feedback) {
+      useFeedbackStore.setState(data.feedback);
+      useErrorStore.getState().clearError();
+    } else {
+      useErrorStore.getState().setError(data.error || "Unknown error");
+    }
+  } catch (err) {
+    console.error("Error generating captions:", err);
+    useErrorStore.getState().setError("Request failed");
   }
+};
 
-  const flattenedCaptions = Transcript.content.flat();
-
-  const captions = flattenedCaptions.map(item => item.text).join(' ');
-
-  const res = await fetch('/api/create-feedback', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ captions }),
-  });  
-
-  const data = await res.json();
-
-  if(data.feedback) {
-    useFeedbackStore.setState(data.feedback)
-    useErrorStore.getState().clearError()
-  } else{
-    useErrorStore.getState().setError(data.error || 'unknown error' )
-  }
-
-}
 
 
 
